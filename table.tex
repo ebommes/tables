@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+% Table setup, do not delete this
+\usepackage{caption}
+\usepackage{siunitx}
+\usepackage{booktabs}
+
+% Setups
+\captionsetup{belowskip = 12pt, aboveskip = 4pt}
+\setlength{\parindent}{0pt}
+
+\newenvironment{lvbtab}[1]{
+	\begin{table}[#1]
+		\sisetup{
+			detect-all = true,
+			table-number-alignment = center,
+			add-decimal-zero=false,
+			round-mode=off
+		}
+		\centering
+	}{
+\end{table}
+}
+
+\begin{document}
+
+\section{Table in LvB Style}
+
+% latex table generated in R 3.2.2 by xtable 1.8-2 package
+% Wed Apr 27 09:54:34 2016
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|SSSSSSS}
+  \hline
+\hline
+\multicolumn{1}{c|}{Variable} & \multicolumn{1}{c}{$\mu$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\mbox{Min}$} & \multicolumn{1}{c}{$\rho_{0.25}$} & \multicolumn{1}{c}{$\rho_{0.5}$} & \multicolumn{1}{c}{$\rho_{0.75}$} & $\mbox{Max}$ \\ 
+  \hline
+Ozone & 42.10 & 33.28 & 1.0 & 18.0 & 31.0 & 62.0 & 168.0 \\ 
+  Solar.R & 184.80 & 91.15 & 7.0 & 113.5 & 207.0 & 255.5 & 334.0 \\ 
+  Wind & 9.94 & 3.56 & 2.3 & 7.4 & 9.7 & 11.5 & 20.7 \\ 
+  Temp & 77.79 & 9.53 & 57.0 & 71.0 & 79.0 & 84.5 & 97.0 \\ 
+   \hline
+\hline
+\end{tabular}
+\caption{Summary statistics of airquality data set} 
+\end{table}
+
+This automatically generated table already looks okay as there are no dancing decimal points. However, the column names are slightly off center.
+\section{Additional setup in siunitx}
+
+\begin{lvbtab}{ht}
+\centering
+\begin{tabular}{l|S[table-format=3.2]S[table-format=2.2]S[table-format=2.1]S[table-format=3.1]S[table-format=3.1]S[table-format=3.1]S[table-format=3.1]}
+  \hline
+\hline
+\multicolumn{1}{c|}{Variable} & \multicolumn{1}{c}{$\mu$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\mbox{Min}$} & \multicolumn{1}{c}{$\rho_{0.25}$} & \multicolumn{1}{c}{$\rho_{0.5}$} & \multicolumn{1}{c}{$\rho_{0.75}$} & \multicolumn{1}{c}{$\mbox{Max}$} \\ 
+  \hline
+Ozone & 42.10 & 33.28 & 1.0 & 18.0 & 31.0 & 62.0 & 168.0 \\ 
+  Solar.R & 184.80 & 91.15 & 7.0 & 113.5 & 207.0 & 255.5 & 334.0 \\ 
+  Wind & 9.94 & 3.56 & 2.3 & 7.4 & 9.7 & 11.5 & 20.7 \\ 
+  Temp & 77.79 & 9.53 & 57.0 & 71.0 & 79.0 & 84.5 & 97.0 \\ 
+   \hline
+\hline
+\end{tabular}
+\caption{Summary statistics of airquality data set} 
+\end{lvbtab}
+
+An additional setup of the siunitx TeX package provides better centering. \\
+
+\section{No decimal zeroes}
+\begin{lvbtab}{ht}
+\centering
+\begin{tabular}{l|S[table-format=3.2,round-mode=off]S[table-format=2.2,round-mode=off]S[table-format=2.1,round-mode=off]S[table-format=3.1,round-mode=off]S[table-format=3.1,round-mode=off]S[table-format=3.1,round-mode=off]S[table-format=3.1,round-mode=off]}
+  \hline
+\hline
+\multicolumn{1}{c|}{Variable} & \multicolumn{1}{c}{$\mu$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\mbox{Min}$} & \multicolumn{1}{c}{$\rho_{0.25}$} & \multicolumn{1}{c}{$\rho_{0.5}$} & \multicolumn{1}{c}{$\rho_{0.75}$} & \multicolumn{1}{c}{$\mbox{Max}$} \\ 
+  \hline
+Ozone & 42.1 & 33.28 & 1 & 18 & 31 & 62 & 168 \\ 
+  Solar.R & 184.80 & 91.15 & 7 & 113.5 & 207 & 255.5 & 334 \\ 
+  Wind & 9.94 & 3.56 & 2.3 & 7.4 & 9.7 & 11.5 & 20.7 \\ 
+  Temp & 77.79 & 9.53 & 57 & 71 & 79 & 84.5 & 97 \\ 
+   \hline
+\hline
+\end{tabular}
+\caption{Summary statistics of airquality data set} 
+\end{lvbtab}
+
+It would even be possible to remove decimal zeroes while still avoiding dancing decimal points. But this might look off, depending on the table data. For this data, it is quite distracting.
+
+\end{document}
