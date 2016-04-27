@@ -9,35 +9,35 @@ lapply(libraries, library, quietly = TRUE, character.only = TRUE)
 
 # Example summary function
 summarize = function(df){
-	df.mean  = round(sapply(df, mean), 2)
-	df.sd    = round(sapply(df, sd), 2)
-	df.quant = sapply(data.df, quantile)
+    df.mean  = round(sapply(df, mean), 2)
+    df.sd    = round(sapply(df, sd), 2)
+    df.quant = sapply(data.df, quantile)
     
     # Construct dataframe
-	df.sum = t(rbind(df.mean, df.sd, df.quant))
-	df.sum = data.frame(Variable = row.names(df.sum), df.sum)
+    df.sum = t(rbind(df.mean, df.sd, df.quant))
+    df.sum = data.frame(Variable = row.names(df.sum), df.sum)
 
-	# Delete rownames
-	row.names(df.sum) = NULL
+    # Delete rownames
+    row.names(df.sum) = NULL
 
-	# Construct vector with TeX names
-	cnames = c("Variable", "$\\mu$", "$\\sigma$", "$\\mbox{Min}$", 
-		       "$\\rho_{0.25}$", "$\\rho_{0.5}$", "$\\rho_{0.75}$", "$\\mbox{Max}$")
+    # Construct vector with TeX names
+    cnames = c("Variable", "$\\mu$", "$\\sigma$", "$\\mbox{Min}$", 
+               "$\\rho_{0.25}$", "$\\rho_{0.5}$", "$\\rho_{0.75}$", "$\\mbox{Max}$")
 
-	# Small changes
-	n           = length(cnames)
-	cnames[1]   = paste("\\multicolumn{1}{c|}{", cnames[1], "}", sep = "")
-	cnames[2:n] = paste("\\multicolumn{1}{c}{", cnames[2:n], "}", sep = "")
+    # Small changes
+    n           = length(cnames)
+    cnames[1]   = paste("\\multicolumn{1}{c|}{", cnames[1], "}", sep = "")
+    cnames[2:n] = paste("\\multicolumn{1}{c}{", cnames[2:n], "}", sep = "")
 
-	# Change dataframe names
-	names(df.sum) = cnames
+    # Change dataframe names
+    names(df.sum) = cnames
 
-	return(df.sum)
+    return(df.sum)
 }
 
 # Function: number of decimal places
 dec = function(x){
-	if(!is.numeric(x)) return(0);
+    if(!is.numeric(x)) return(0);
     if ((x %% 1) != 0) {
         nchar(strsplit(sub('0+$', '', as.character(x)), ".", fixed = TRUE)[[1]][[2]])
     } else {
@@ -46,7 +46,7 @@ dec = function(x){
 }
 
 max.dec = function(x){
-	return(max(sapply(x, dec)))
+    return(max(sapply(x, dec)))
 }
 
 # Load example dataset
@@ -73,9 +73,9 @@ align(tab.spec) = al
 
 # Print table
 tab = print(tab.spec,
-	        include.rownames = FALSE,
-	        sanitize.colnames.function = function(x) x,
-	        hline.after = c(-1, -1, 0, nrow(tab.spec), nrow(tab.spec)))
+            include.rownames = FALSE,
+            sanitize.colnames.function = function(x) x,
+            hline.after = c(-1, -1, 0, nrow(tab.spec), nrow(tab.spec)))
 
 cat("\n \n Copy the following table \n \n")
 cat(tab)
