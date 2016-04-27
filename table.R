@@ -65,7 +65,6 @@ tab.dec[tab.dec > 2] = 2
 
 tab.spec = xtable(sum.df, caption = tab.cap, digits = tab.dec)
 
-
 # Alignment of columns - Use siunitx TeX package
 al              = paste(rep("S", ncol(sum.df) - 1), collapse = "")
 al              = paste("cl|", al, sep = "")
